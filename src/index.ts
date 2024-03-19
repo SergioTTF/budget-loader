@@ -5,9 +5,9 @@ import { format } from './utils'
 import * as util from 'util';
 import { AuthMethodsConfiguration, Configuration, DefaultApi, createConfiguration } from "organizze-sdk"
 import { mapTransaction } from './mapper/mapper';
-import * as fs from 'fs'
 
-void (async function(): Promise<void> {
+
+export const lambdaHandler = async (event): Promise<any> => {
   const { CLIENT_ID = '', CLIENT_SECRET = ''} = process.env
 
   const pluggy = new PluggyClient({
@@ -41,7 +41,7 @@ void (async function(): Promise<void> {
     }
   })
   console.log(count + " records created");
-})()
+}
 
 function getOrganizzeConfig(): Configuration {
   const { ORGANIZZE_USERNAME = '', ORGANIZZE_PASSWORD = '', ORGANIZZE_USER_AGENT = '' } = process.env

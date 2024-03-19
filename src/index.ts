@@ -5,6 +5,7 @@ import { format } from './utils'
 import * as util from 'util';
 import { AuthMethodsConfiguration, Configuration, DefaultApi, createConfiguration } from "organizze-sdk"
 import { mapTransaction } from './mapper/mapper';
+import * as fs from 'fs'
 
 void (async function(): Promise<void> {
   const { CLIENT_ID = '', CLIENT_SECRET = ''} = process.env
@@ -22,9 +23,9 @@ void (async function(): Promise<void> {
   let transactions: Transaction[] = [];
   const accountIds: string[] = [PluggyConstants.Nubank.CREDIT_ACCOUNT_ID, PluggyConstants.Nubank.CHECKING_ACCOUNT_ID, PluggyConstants.Inter.CHECKING_ACCOUNT_ID];
 
-  for(let accountId in accountIds) {
+  for(let accountId of accountIds) {
     let newTransactions = await pluggy.fetchTransactions(accountId, transactionsfilter);
-    transactions.concat(newTransactions.results);
+    transactions = transactions.concat(newTransactions.results);
   }
 
   

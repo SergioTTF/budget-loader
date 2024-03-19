@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "organizze-sdk": "^1.0.2",
+    "organizze-sdk": "^1.0.3",
     "pluggy-sdk": "^0.38.0"
   },
   "devDependencies": {

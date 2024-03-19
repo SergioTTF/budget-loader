@@ -1,4 +1,4 @@
-import { Transaction as PluggyTransaction } from 'pluggy-sdk';
+import { Transaction as PluggyTransaction, TransactionType } from 'pluggy-sdk';
 import { OrganizzeCategory as Category } from '../enum/categories'
 import { Transaction as OrganizzeTransaction } from 'organizze-sdk';
 import { PluggyConstants } from '../constants/pluggy';
@@ -10,7 +10,7 @@ export function mapTransaction(tx: PluggyTransaction): OrganizzeTransaction {
     transaction = {
         description: mapDescription(tx),
         paid: true,
-        amountCents: convertToCents(tx.amount),
+        amountCents: convertToCents(tx.amount, tx.type),
         accountId: mapAccount(tx.accountId),
         categoryId: mapCategory(tx.category),
         notes: tx.id,
@@ -34,8 +34,8 @@ export function mapDescription(tx: PluggyTransaction): string {
   return title;
 }
 
-function convertToCents(amount: number) {
-  return amount * 100;
+function convertToCents(amount: number, txType: TransactionType) {
+  return txType == "DEBIT" && amount > 0 ?  amount * -100: amount * 100;
 }
 
 function mapAccount(accountId: string): number {
@@ -51,13 +51,18 @@ function mapAccount(accountId: string): number {
 }
 
 function specificMapping(pluggyTx: PluggyTransaction, organizzeTx: OrganizzeTransaction) {
-  const { DATING_CPF = '', DOCTOR_CPF = ''} = process.env
+  const { DATING_CPF = ''} = process.env
+  const DOCTOR_CPF = process.env.DOCTOR_CPF.split(',');
   if (pluggyTx.paymentData?.receiver?.documentNumber?.value == DATING_CPF) {
     organizzeTx.categoryId = Category.Dating;
     organizzeTx.description.concat(" - Namoro");
-  } else if (pluggyTx.paymentData?.receiver?.documentNumber?.value == DOCTOR_CPF) {
+  } else if (DOCTOR_CPF.includes(pluggyTx.paymentData?.receiver?.documentNumber?.value)) {
     organizzeTx.categoryId = Category.Health;
     organizzeTx.description.concat(" - Psicóloga");
+  } else if(pluggyTx.description.toLowerCase().includes("uber")) {
+    organizzeTx.categoryId = Category.Uber;
+  } else if(pluggyTx.description.toLowerCase().includes("ifood")) {
+    organizzeTx.categoryId = Category.Delivery;
   }
 }
 

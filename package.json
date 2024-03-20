@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
   },
   "author": "Sergio Teixeira",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "organizze-sdk": "^1.0.3",
+    "organizze-sdk": "^1.0.5",
     "pluggy-sdk": "^0.38.0"
   },
   "devDependencies": {

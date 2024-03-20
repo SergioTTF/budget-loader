@@ -26,8 +26,12 @@ jobs:
           CI: true
         run: |
           npm ci
+      - name: Npm Build
+        run: |
+          npm run build
+      - name: Zip File
+        run: |
+          zip -j deploy.zip ./built/*
       - name: Deploy
         run: |
-          npx ncc build src/index.ts
-          zip -j deploy.zip ./built/*
           aws lambda update-function-code --function-name=budget-loader --zip-file=fileb://deploy.zip

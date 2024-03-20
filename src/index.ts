@@ -3,7 +3,7 @@ import 'dotenv/config'
 import { PluggyConstants } from './constants/pluggy'
 import { format } from './utils'
 import * as util from 'util';
-import { AuthMethodsConfiguration, Configuration, DefaultApi, createConfiguration } from "organizze-sdk"
+import { AuthMethodsConfiguration, Configuration, DefaultApi, createConfiguration } from 'organizze-sdk'
 import { mapTransaction } from './mapper/mapper';
 
 

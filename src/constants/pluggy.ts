@@ -1,7 +1,7 @@
 export class PluggyConstants {
     static readonly Inter = {
-        ITEM_ID: "c9aa7905-9d39-408e-8f47-0aa38389db98",
-        CHECKING_ACCOUNT_ID: "b467908a-204a-4b24-b409-b62b5c7d7bd6",
+        ITEM_ID: "a12a4010-812a-4501-85bb-0e08c2a23717",
+        CHECKING_ACCOUNT_ID: "e3d54632-cc89-4a2e-98eb-f20021bebbb8",
     } as const;
 
     static readonly Nubank = {

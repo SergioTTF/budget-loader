@@ -41,6 +41,7 @@ export const handler = async (event): Promise<any> => {
     }
   })
   console.log(count + " records created");
+  return count + " records created";
 }
 
 function getOrganizzeConfig(): Configuration {

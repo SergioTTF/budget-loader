@@ -32,7 +32,7 @@ jobs:
       - name: Zip File
         run: |
           mv node_modules built
-          zip -j deploy.zip ./built/**/*
+          zip -r deploy.zip ./built
       - name: Deploy
         run: |
           aws lambda update-function-code --function-name=budget-loader --zip-file=fileb://deploy.zip

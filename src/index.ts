@@ -34,12 +34,12 @@ export const handler = async (event): Promise<any> => {
   const organizzeTransactions = await organizze.getTransactions(undefined,  format(lastTwoWeeksDate), format(new Date()));
   
   let count = 0;
-  transactions.forEach(tx => {
+  for (let tx of transactions) {
     if(!organizzeTransactions.some(transaction  => transaction.notes == tx.id)){
-      organizze.createTransaction(mapTransaction(tx));
+      await organizze.createTransaction(mapTransaction(tx));
       count++;
     }
-  })
+  }
   console.log(count + " records created");
   return count + " records created";
 }

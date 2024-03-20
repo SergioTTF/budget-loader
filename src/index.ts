@@ -7,7 +7,7 @@ import { AuthMethodsConfiguration, Configuration, DefaultApi, createConfiguratio
 import { mapTransaction } from './mapper/mapper';
 
 
-export const lambdaHandler = async (event): Promise<any> => {
+export const handler = async (event): Promise<any> => {
   const { CLIENT_ID = '', CLIENT_SECRET = ''} = process.env
 
   const pluggy = new PluggyClient({

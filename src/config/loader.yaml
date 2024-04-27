@@ -1,0 +1,18 @@
+banks:
+  - name: Inter
+    organizze:
+      accountId: 6899878
+    pluggy:
+      itemId: a12a4010-812a-4501-85bb-0e08c2a23717
+      checkingAccountId: e3d54632-cc89-4a2e-98eb-f20021bebbb8
+  - name: Nubank
+    organizze:
+      accountId: 7186255
+    pluggy:
+      itemId: 5480e09e-d2d5-43b9-9400-788745c55983
+      checkingAccountId: 52ab16bd-83b5-448c-b236-a4a08b502646
+      creditAccountId: c25b1f73-d129-4e0a-bff2-0c02e4ae0071
+  - name: Default
+    organizze:
+      accountId: 6899877
+    default: true

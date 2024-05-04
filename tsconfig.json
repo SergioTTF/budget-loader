@@ -5,5 +5,5 @@
       "target": "es5",
       "moduleResolution":"node",
     },
-    "include": ["./src/**/*", "src/constants/pluggy.ts"]
+    "include": ["./src/**/*"]
   }

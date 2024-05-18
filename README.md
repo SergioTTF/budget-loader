@@ -40,7 +40,7 @@ In the budget-loader application, you have the flexibility to customize how tran
 
 The `OrganizzeCategory` Enum is an enumeration that represents the categories of your Organizze account. Each category has its corresponding Id, in order to get this information you should retrive your categories from your Organizze API and fill all the category data:
 
-```ts
+```js
 enum OrganizzeCategory {
   Clothes = 125082753,
   DebtsAndLoans = 125082754,
@@ -56,7 +56,7 @@ File containing this enum: `src/config/categories.ts`
 ### Customizing `mapCategory` Function
 The `mapCategory` function is responsible for mapping the transaction category string received by the Pluggy API to predefined categories declared in the OrganizzeCategory enum. You can customize the category that will be mapped to your categories by modifying the switch statement:
 
-```ts
+```js
 function mapCategory(categoryName: string): OrganizzeCategory {
     switch (categoryName) {
       case 'Fixed income':
@@ -74,7 +74,7 @@ function mapCategory(categoryName: string): OrganizzeCategory {
 ### Customizing `specificMapping` Function
 The `specificMapping` function allows you to make specific alterations to the mapped object based on the original transaction data received from the Pluggy API. You can set a category based on the receiver's name or append some text to the title of your transaction:
 
-```ts
+```js
 function specificMapping(pluggyTx: PluggyTransaction, organizzeTx: OrganizzeTransaction) {
     const DOCTOR_CPF = process.env.DOCTOR_CPF.split(',');
     if (DOCTOR_CPF.includes(pluggyTx.paymentData?.receiver?.documentNumber?.value)) {
